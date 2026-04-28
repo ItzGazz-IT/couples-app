@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/couples-app/static/css/main.dfe1ab84.css",
+    "main.js": "/couples-app/static/js/main.46f485ca.js",
+    "index.html": "/couples-app/index.html",
+    "main.dfe1ab84.css.map": "/couples-app/static/css/main.dfe1ab84.css.map",
+    "main.46f485ca.js.map": "/couples-app/static/js/main.46f485ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dfe1ab84.css",
+    "static/js/main.46f485ca.js"
+  ]
+}

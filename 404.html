@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirect</title>
+  <script>
+    const path = window.location.pathname;
+    const segments = path.split('/').filter(Boolean);
+    
+    // If path is like /couples-app/transactions, keep everything
+    // GitHub Pages redirects to 404.html, so we need to redirect to index.html
+    if (!path.includes('index.html')) {
+      window.location.replace('/couples-app/index.html?path=' + encodeURIComponent(path));
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
