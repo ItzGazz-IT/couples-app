@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Pocket Ledger",
+  "name": "Pocket Ledger - Couples Budget Tracker",
+  "description": "Shared budget tracker for couples. Track bills, budgets, savings goals, and transactions together.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,22 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
+  "start_url": "/couples-app/",
+  "scope": "/couples-app/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#ef7a3e",
+  "background_color": "#fef9ef",
+  "categories": ["finance", "productivity"]
 }
+
