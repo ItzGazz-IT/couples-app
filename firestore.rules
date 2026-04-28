@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwnUserDoc(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isHouseholdMember(householdId) {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid)/meta/membership)
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)/meta/membership).data.householdId == householdId;
+    }
+
+    function isHouseholdCreator(householdId) {
+      return isSignedIn()
+        && get(/databases/$(database)/documents/households/$(householdId)).data.createdBy == request.auth.uid;
+    }
+
+    function isOwnMemberDoc(householdId, memberId) {
+      // Allow a signed-in user to write their own member doc (used during onboarding
+      // before the membership record is committed to users/{uid}/meta/membership)
+      return isSignedIn() && request.auth.uid == memberId;
+    }
+
+    match /users/{userId}/{document=**} {
+      allow read, write: if isOwnUserDoc(userId);
+    }
+
+    // Allow a signed-in user to create the household root document during setup
+    match /households/{householdId} {
+      allow create: if isSignedIn() && request.resource.data.createdBy == request.auth.uid;
+      allow read, write: if isHouseholdMember(householdId);
+    }
+
+    match /households/{householdId}/{document=**} {
+      allow read, write: if isHouseholdMember(householdId);
+      // Allow the creator to write sub-documents (e.g. meta/profile) during initial setup
+      // before their membership record exists
+      allow create: if isHouseholdCreator(householdId);
+    }
+
+    // Allow a user to create/update their own member finances doc during onboarding
+    // (before their membership record is saved, so isHouseholdMember would fail)
+    match /households/{householdId}/members/{memberId} {
+      allow read: if isHouseholdMember(householdId) || isOwnMemberDoc(householdId, memberId);
+      allow create, update: if isOwnMemberDoc(householdId, memberId);
+    }
+
+    match /invites/{inviteCode} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn();
+    }
+  }
+}
