@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/couples-app/static/css/main.dfe1ab84.css",
-    "main.js": "/couples-app/static/js/main.46f485ca.js",
+    "main.css": "/couples-app/static/css/main.69959fd2.css",
+    "main.js": "/couples-app/static/js/main.b8080691.js",
     "index.html": "/couples-app/index.html",
-    "main.dfe1ab84.css.map": "/couples-app/static/css/main.dfe1ab84.css.map",
-    "main.46f485ca.js.map": "/couples-app/static/js/main.46f485ca.js.map"
+    "main.69959fd2.css.map": "/couples-app/static/css/main.69959fd2.css.map",
+    "main.b8080691.js.map": "/couples-app/static/js/main.b8080691.js.map"
   },
   "entrypoints": [
-    "static/css/main.dfe1ab84.css",
-    "static/js/main.46f485ca.js"
+    "static/css/main.69959fd2.css",
+    "static/js/main.b8080691.js"
   ]
 }
