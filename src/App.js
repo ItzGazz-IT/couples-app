@@ -16,7 +16,7 @@ function App() {
   const finance = useFinanceData(auth.user);
 
   return (
-    <Router>
+    <Router basename="/couples-app">
       <div className="app-shell">
         <div className="bg-blob bg-blob-one" />
         <div className="bg-blob bg-blob-two" />
